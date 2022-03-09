@@ -1,0 +1,6 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+     fill="currentColor" data-test-id="icon" class="icon_cbe9250 icon_1be8203 color-red_1be8203"
+     aria-hidden="true">
+    <path clip-rule="evenodd"
+          d="M8 6v3.9h.007L8 9.906l2.667 2.594L8 15.1l.007.007H8V19h8v-3.893h-.007L16 15.1l-2.667-2.6L16 9.906l-.007-.006H16V6H8zm7.013 9.667V18H9v-2.333L12.007 13l3.006 2.667zM15 7H9v1h6V7z"></path>
+</svg>
