@@ -16,12 +16,16 @@ body{
     max-width: 100%;
     margin: 0 auto;
 }
+
+body::-webkit-scrollbar{
+    width: 0;
+}
 h1{
     font-family: Bebas Neue;
     font-style: normal;
     font-weight: normal;
-    font-size: 48px;
-    line-height: 58px;
+    font-size: 4.8rem;
+    line-height: 5.8rem;
     color: var(--my-gray);
     padding: 4rem 0 0 2.1rem;
 }
@@ -30,8 +34,8 @@ h2{
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
-    font-size: 30px;
-    line-height: 29px;
+    font-size: 3rem;
+    line-height: 2.9rem;
     color: var(--my-gray);
     padding: 12rem 0 0 3.5rem;
     position: relative;
@@ -41,18 +45,18 @@ h2::after{
     content: "";
     width: 23.5rem;
     height: 0.2rem;
-    background-color: #377DFF;
+    background-color: var(--blue);
     position: absolute;
     bottom: -1.2rem;
-    left: 0rem;
+    left: 0;
 }
 
 h3{
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
-    line-height: 27px;
+    font-size: 2rem;
+    line-height: 2.7rem;
     letter-spacing: 0.07em;
     color: var(--my-gray);
 }
@@ -62,6 +66,13 @@ h3{
 .wrapper{
     width: 144rem;
     margin: 0 auto;
+}
+
+header{
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 999;
 }
 
 .header__logo{
@@ -85,6 +96,10 @@ h3{
     justify-content: space-between;
 }
 
+.main__column{
+    flex-direction: column;
+}
+
 .filters__wrapper{
     margin: 0;
 }
@@ -101,22 +116,22 @@ h3{
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
-    line-height: 150%;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
     color: #072125;
     padding: 0 0 1rem 0;
 }
 
 .filters__search input {
-    background: #FFFFFF;
-    border: 1px solid rgba(32, 72, 79, 0.5);
+    background: var(--white);
+    border: 0.1rem solid rgba(32, 72, 79, 0.5);
     box-sizing: border-box;
     border-radius: 8px;
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 150%;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
     padding: 1rem;
     color: rgba(7, 33, 37, 0.45);
 }
@@ -129,6 +144,10 @@ h3{
 
 .filters__date{
     gap: 0.5rem;
+}
+
+.filters__btn{
+    margin: 0 0 0 4.7rem;
 }
 
 main{
@@ -150,20 +169,21 @@ main{
 
 .posts__addText{
     margin-top: 2rem;
-    background: #FFFFFF;
-    border: 1px solid rgba(78, 93, 120, 0.5);
+    background: var(--white);
+    border: 0.1rem solid rgba(78, 93, 120, 0.5);
     box-sizing: border-box;
-    border-radius: 6px;
+    border-radius: 0.6rem;
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 152%;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
     letter-spacing: 0.04em;
 }
 
 .posts__textarea{
     display: flex;
+    margin-bottom: 2rem;
 }
 
 .posts__files{
@@ -176,24 +196,28 @@ main{
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 152%;
-    letter-spacing: 0.04em;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    letter-spacing: 0.072rem;
 }
 
 .btn{
-    background: #377DFF;
-    border: 1px solid #377DFF;
+    background: var(--blue);
+    border: 0.1rem solid var(--blue);
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
-    font-size: 22px;
-    line-height: 29px;
+    font-size: 2.2rem;
+    line-height: 2.9rem;
     max-width: 17.6rem;
     width: 100%;
     height: 5.1rem;
+    color: var(--white);
+}
+
+.posts__files_btn{
     margin-left: 28.6rem;
     margin-top: 0.8rem;
 }
@@ -202,14 +226,6 @@ main{
     padding-top: 1rem;
     padding-left: 0.3rem;
 }
-
-.posts__loaded{
-    padding-top: 2.8rem;
-    overflow-y: scroll;
-    height: 90rem;
-}
-
-.posts__loaded::-webkit-scrollbar { width: 0; }
 
 
 .posts__public{
@@ -234,8 +250,8 @@ main{
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: bold;
-    font-size: 18px;
-    line-height: 25px;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
     letter-spacing: 0.07em;
     padding-top: 2.2rem;
     padding-left: 1.2rem;
@@ -246,9 +262,9 @@ main{
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 0.07em;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    letter-spacing: 0.112rem;
 }
 
 #svg-edit{
@@ -260,8 +276,8 @@ main{
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 152%;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
     letter-spacing: 0.04em;
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
@@ -283,11 +299,11 @@ main{
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
     text-align: right;
-    letter-spacing: 0.07em;
-    color: #377DFF;
+    letter-spacing: 0.091rem;
+    color: var(--blue);
 }
 
 .posts__comment{
@@ -300,18 +316,18 @@ main{
 }
 
 .posts__button{
-    background: #FFFFFF;
-    border: 1px solid #377DFF;
+    background: var(--white);
+    border: 0.1rem solid var(--blue);
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     margin: 5rem 0 0 28.5rem;
     padding: 1.7rem 5rem;
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
-    font-size: 22px;
-    line-height: 29px;
-    color: #377DFF;
+    font-size: 2.2rem;
+    line-height: 2.9rem;
+    color: var(--blue);
 }
 
 .posts__content_img{
@@ -323,18 +339,18 @@ main{
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 150%;
-    color: #4E5D78;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    color: var(--my-gray);
 }
 
 .footer__name{
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 150%;
-    color: #4E5D78;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    color: var(--my-gray);
 }
 
 footer{
@@ -350,27 +366,18 @@ footer{
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: 800;
-    font-size: 36px;
-    line-height: 49px;
-    letter-spacing: 0.07em;
-    color: #4E5D78;
-
-    position: absolute;
+    font-size: 3.6rem;
+    line-height: 4.9rem;
+    letter-spacing: 0.252rem;
+    color: var(--my-gray);
     white-space: nowrap;
-    left: 37rem;
-    top: -7rem;
+    align-items: center;
+    display: flex;
+    padding-right: 56rem;
+    padding-top: 2rem;
+    padding-left: 7rem;
 }
 
-/*.back__main::after{*/
-/*    position: absolute;*/
-/*    content: "";*/
-/*    width:2rem;*/
-/*    height:0.1rem;*/
-/*}*/
-
-.back{
-    position: relative;
-}
 
 .back__word{
     padding-left: 1rem;
@@ -378,6 +385,7 @@ footer{
 
 .twit{
     margin: 0 auto;
+    padding-bottom: 15rem;
 }
 
 .twit__wrapper{
@@ -385,36 +393,46 @@ footer{
     width: 71rem;
 }
 
+.twit__add{
+    margin-left: 36.5rem;
+    position: fixed;
+    top: 70rem;
+    background-color: var(--white);
+}
+
 .twit__comment{
     display: flex;
     padding-bottom: 1.2rem;
 }
 
-.twit__comments{
-    overflow-y: scroll;
-    height: 30rem;
-}
 
-.twit__comments::-webkit-scrollbar {
+
+
+
+.twit::-webkit-scrollbar {
     width: 0;
 }
 
 .twit__files_btn{
-    margin-left: 42rem;
+    margin-left: 44rem;
 }
 
 .posts_hashtags{
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: 800;
-    font-size: 24px;
-    line-height: 49px;
-    letter-spacing: 0.07em;
-    color: #4E5D78;
+    font-size: 2.4rem;
+    line-height: 4.9rem;
+    letter-spacing: 0.17rem;
+    color: var(--my-gray);
 }
 
 
 @media screen and (max-width: 1024px){
+
+    :root{
+        font-size: 9px;
+    }
     .wrapper {
         width: 102rem;
     }
@@ -430,12 +448,16 @@ footer{
     }
 }
 @media screen and (max-width: 768px) {
+
+    :root{
+        font-size: 8px;
+    }
     .wrapper {
         width: 77rem;
     }
     .header__user{
         gap: 0.5rem;
-        padding: 2rem 0rem 0 0;
+        padding: 2rem 0 0 0;
     }
     .posts__wrapper{
         width: 48rem;
@@ -448,11 +470,11 @@ footer{
         margin-left: 9rem;
     }
     #svg-edit{
-        padding-left: 13.3rem;
+        padding-left: 12.3rem;
     }
     .posts__button{
         white-space: nowrap;
-        margin: 2rem 0 0 0.5rem;
+        margin: 2rem 0 0 10.5rem;
     }
 
     .posts__content_img img{
@@ -481,6 +503,11 @@ footer{
 }
 
 @media screen and (max-width: 425px){
+    :root{
+        font-size: 7px;
+    }
+
+
     .header__wrapper{
         flex-direction: column;
     }
@@ -498,7 +525,11 @@ footer{
     }
 
     .header__user{
-        padding: 2rem 0rem 0 12rem;
+        padding: 2rem 0 0 12rem;
+    }
+
+    .header__user img{
+        display: none;
     }
     .header__logo{
         margin: 2.8rem 0 0 11rem;
@@ -507,6 +538,10 @@ footer{
     main{
         flex-direction: column;
     }
+
+    .filters__wrapper{
+        padding-left: 11rem;
+    }
     .filters__title{
         padding: 4rem 0 0 18rem;
     }
@@ -514,6 +549,8 @@ footer{
         padding: 3.5rem 0 0 11.8rem;
         width: 23.5rem;
     }
+
+
     h2::after{
         left: 12rem;
         width: 23.5rem;
@@ -528,6 +565,10 @@ footer{
 
     .posts__files{
         width: 28rem;
+    }
+
+    .posts{
+        padding: 0 0 0 16rem;
     }
 
     .posts__wrapper{
@@ -555,7 +596,7 @@ footer{
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 375px) {
 
     .wrapper {
         width: 37.5rem;
@@ -606,6 +647,14 @@ footer{
         white-space: nowrap;
     }
 
+    .posts__psevdo{
+        padding: 0 0 0 3rem;
+    }
+
+    #svg-edit{
+        padding: 0.6rem 0 0 4rem;
+    }
+
     .twit__wrapper {
         width: 34rem;
     }
@@ -613,6 +662,7 @@ footer{
     .twit__files_btn{
         margin-left: 12rem;
     }
+
 }
 
 @media screen and (max-width: 320px){
@@ -663,7 +713,7 @@ footer{
         align-items: center;
     }
     .posts__files_text{
-        font-size: 14px;
+        font-size: 1.4rem;
 
     }
 
