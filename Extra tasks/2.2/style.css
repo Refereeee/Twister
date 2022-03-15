@@ -1,0 +1,330 @@
+:root{
+    font-size: 10px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body{
+    font-size: 1.8rem;
+}
+
+.ticket__map_line{
+    display: flex;
+
+}
+
+.container{
+    width: 79.6rem;
+    margin: 0 auto;
+    display: flex;
+    padding-top: 2rem;
+    cursor: pointer;
+}
+
+.ticket__free{
+    background-color: rgb(53, 199, 114);
+    width: 14rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 0.3rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+    align-self: flex-start;
+}
+
+.bought{
+    padding-left: 2rem;
+}
+
+.ticket__fast{
+    background-color: #B983F1;
+    width: 14rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 0.3rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+    align-self: flex-start;
+}
+
+.ticket__salary{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 19rem;
+    align-items: center;
+}
+
+.ticket__salary_price{
+    font-size: 2.8rem;
+    font-weight: 600;
+}
+
+.ticket__salary_button{
+    width: 19rem;
+    background: #ff6f32;
+    border-radius: 10px;
+    color: white;
+    padding: 1.4rem 2rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.ticket__salary_button:hover{
+    background: #FF8379;
+}
+
+
+
+.bordered{
+    border-bottom: 0.05rem solid #9ea9b7;;
+}
+.ticket__block{
+    width: 52rem;
+}
+
+.ticket__flight{
+    padding: 2rem;
+}
+
+.ticket__icons{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.ticket__airways{
+    display: flex;
+    gap: 1rem;
+}
+
+.ticket__notifications{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.ticket__from{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.ticket__date_time{
+    font-weight: 400;
+    font-size: 3.4rem;
+}
+
+.ticket__date__city{
+    color: #9ea9b7;
+    font-size: 1.4rem;
+}
+
+.ticket__date_number{
+    color: #9ea9b7;
+    font-size: 1.4rem;
+    white-space: nowrap;
+}
+
+.ticket__to{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    align-items: end;
+}
+
+.ticket__route{
+    display: flex;
+    gap: 2rem;
+    padding-top: 4rem;
+}
+
+
+.ticket__map_route{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+}
+
+.ticket__map_route svg{
+    fill: #9ea9b7;
+}
+
+#ticket__links{
+    fill: #9ea9b7;
+}
+
+.ticket__danger{
+    display: flex;
+}
+
+.ticket__danger svg{
+    fill:#f54759;
+}
+
+.ticket__danger svg:hover{
+    cursor: auto;
+}
+
+.ticket__map_route span{
+    color: #9ea9b7;
+    font-size: 1.4rem;
+}
+
+.ticket__map_stroke{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3.2rem;
+}
+.ticket__map_stroke__second{
+    display: flex;
+    gap: 3.5rem;
+    flex-direction: column-reverse;
+}
+
+.ticket__map_line_first_elem{
+    display: block;
+    width: 14rem;
+    height: 0.4rem;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background-color: #9ea9b7;
+    border-radius: 10px;
+}
+
+.ticket__map_line_first_word{
+    font-size: 1.1rem;
+    color:#0c73fe;
+    font-weight: bold;
+}
+
+.ticket__map_line_first_word:hover ~ .ticket__map_line_first_elem{
+    background-color:#f5a623;
+    transition: 1s;
+}
+
+.ticket__map_line_second_word:hover{
+    color:#f5a623;
+    transition: 1s;
+}
+
+.ticket__map_line_first_word:hover{
+    color:#f5a623;
+    transition: 1s;
+}
+
+.ticket__map_line_third_word:hover{
+    transition: 1s;
+    color:#f5a623;
+}
+
+.ticket__map_line_second_word:hover ~ .ticket__map_line_second_elem {
+    background-color:#f5a623;
+    transition: 1s;
+}
+
+.ticket__map_line_third_word:hover ~ .ticket__map_line_third_elem{
+    background-color:#f5a623;
+    transition: 1s;
+}
+
+.ticket__map_line_second_elem:hover{
+    background-color:#f5a623;
+    transition: 1s;
+}
+
+.ticket__map_line_third_elem:hover{
+    background-color:#f5a623;
+    transition: 1s;
+}
+
+.ticket__map_line_first_elem:hover{
+    background-color:#f5a623;
+    transition: 1s;
+}
+
+.ticket__map_route svg:hover{
+    fill:  #f5a623;
+    transition: 1s;
+}
+
+.ticket__map_line_second_elem{
+    display: block;
+    width: 7rem;
+    height: 0.1rem;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background-color: #9ea9b7;
+    border-radius: 10px;
+}
+
+.ticket__map_line_second_word{
+    align-self: center;
+    font-size: 1.1rem;
+    color:#0c73fe;
+    font-weight: bold;
+}
+
+.ticket__map_line_third_elem{
+    display: block;
+    width: 7rem;
+    height: 0.4rem;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background-color: #9ea9b7;
+    border-radius: 10px;
+}
+
+.ticket__map_line_third_word{
+    align-self: end;
+    font-size: 1.1rem;
+    color:#0c73fe;
+    font-weight: bold;
+}
+
+
+.first_line_elem{
+    width: 5rem;
+}
+
+.bought_line_elem{
+    width: 16rem;
+}
+
+.block2_first_line_elem{
+    width: 8rem;
+}
+
+.block2_bought_line_elem{
+    width: 13rem;
+}
+
+.ticket__salary_lost{
+    color: #FF8379;
+    font-size:1.8rem;
+    text-align: center;
+}
+
+#ticket__links:hover{
+    fill:#0c73fe;
+    transition: 1s;
+}
+
+
+#ticket__notification:hover{
+    fill:#0c73fe;
+    transition: 1s;
+}
+
+
+
