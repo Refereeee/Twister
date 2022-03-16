@@ -1,0 +1,6 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+     xmlns="http://www.w3.org/2000/svg" data-test-id="icon"
+     class="icon_cbe9250 ticket-sharing-desktop__share-icon" aria-hidden="true">
+    <path d="M11.375 1.272L8.277 4.57c-.37.363-.37 1.028 0 1.391.142.152.37.242.597.212.227 0 .455-.09.625-.272L11 4.176v9.886c0 .482.5.938 1 .938s1-.41 1-.938V4.176l1.473 1.754a.886.886 0 001.25.03c.37-.363.37-.998 0-1.391l-3.098-3.297a.854.854 0 00-1.25 0z"></path>
+    <path d="M9 8v2H7a1 1 0 00-1 1v8a1 1 0 001 1h10a1 1 0 001-1v-8a1 1 0 00-1-1h-2V9 8h2a3 3 0 013 3v8a3 3 0 01-3 3H7a3 3 0 01-3-3v-8a3 3 0 013-3h2z"></path>
+</svg>
