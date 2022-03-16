@@ -670,13 +670,13 @@ const filterConfig = {
 
 console.log(myModule.getTweets())
 
-console.log(editTweet(13, 'new fallen'))
-console.log(getTweet(13))
-console.log(removeTweet("13"))
+console.log(myModule.myeditTweet(13, 'new fallen'))
+console.log(myModule.getTweet(13))
+console.log(myModule.removeTweet("13"))
 console.log(tweets);
-console.log(addComment(5, 'i feel you'));
-console.log(getTweet(5));
-console.log(changeUser("Barak Obama"));
-console.log(tweets)
+console.log(myModule.addComment(5, 'i feel you'));
+console.log(myModule.getTweet(5));
+console.log(myModule.changeUser("Barak Obama"));
+
 
 
