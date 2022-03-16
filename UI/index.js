@@ -511,61 +511,60 @@ const tweets = [
 ];
 
 
-let user = "Bill Gates";
-const getTweets = (function () {
+
+
+const myModule = (function () {
+    let user = "Bill Gates";
 
     let tweetsState = [...tweets];
 
-    return function (skip = 0, top = 10, filterConfig) {
+    const sorting = (skip=0,top=10) => {
+        return tweetsState.sort((a, b) => a.createdAt - b.createdAt).slice(skip, skip + top)
+    }
 
-
-        const sorting = () => {
-            return tweetsState.sort((a, b) => a.createdAt - b.createdAt).slice(skip, skip + top)
+    const filterByAuthor = () => {
+        if (filterConfig?.author) {
+            return tweetsState = tweetsState.filter(el => el.author === user);
         }
+    }
 
-        const filterByAuthor = () => {
-            if (filterConfig?.author) {
-                return tweetsState = tweetsState.filter(el => el.author === user);
-            }
+    const filterByDate = () => {
+        if (filterConfig?.dateFrom && filterConfig?.dateTo) {
+            return tweetsState = tweetsState.filter(el => el.createdAt >= filterConfig.dateFrom && el.createdAt <= filterConfig.dateTo)
         }
-
-        const filterByDate = () =>{
-            if (filterConfig?.dateFrom && filterConfig?.dateTo) {
-                return tweetsState = tweetsState.filter(el => el.createdAt >= filterConfig.dateFrom && el.createdAt <= filterConfig.dateTo)
-            }
-            if (filterConfig?.dateFrom) {
-                return tweetsState = tweetsState.filter(el => el.createdAt > filterConfig.dateFrom)
-            }
-            if (filterConfig?.dateTo) {
-                return tweetsState = tweetsState.filter(el => el.createdAt < filterConfig?.dateTo)
-            }
+        if (filterConfig?.dateFrom) {
+            return tweetsState = tweetsState.filter(el => el.createdAt > filterConfig.dateFrom)
         }
-
-
-        const filterByHashtags = () => {
-            if (filterConfig?.hashTags) {
-                return tweetsState = tweetsState.filter(el => {
-                    if (filterConfig.hashTags.includes(el.hashTags)) {
-                        return el
-                    }
-                })
-            }
+        if (filterConfig?.dateTo) {
+            return tweetsState = tweetsState.filter(el => el.createdAt < filterConfig?.dateTo)
         }
+    }
 
-        const filterByText = () => {
-            if (filterConfig?.text) {
-                return tweetsState = tweetsState.filter(el => {
-                    if (el.text.includes(filterConfig.text)) {
-                        return el
-                    }
-                })
-            }
+
+    const filterByHashtags = () => {
+        if (filterConfig?.hashTags) {
+            return tweetsState = tweetsState.filter(el => {
+                if (filterConfig.hashTags.includes(el.hashTags)) {
+                    return el
+                }
+            })
         }
+    }
+
+    const filterByText = () => {
+        if (filterConfig?.text) {
+            return tweetsState = tweetsState.filter(el => {
+                if (el.text.includes(filterConfig.text)) {
+                    return el
+                }
+            })
+        }
+    }
 
 
-
-        if (filterConfig === undefined) {
-            return sorting()
+    const getTweets = (skip = 0, top = 10, filterConfig = {}) => {
+        if (filterConfig === {}) {
+            return sorting(skip,top)
         }
 
         if (filterConfig !== undefined) {
@@ -573,29 +572,92 @@ const getTweets = (function () {
             filterByDate()
             filterByHashtags()
             filterByText()
-            return sorting()
+            return sorting(skip,top)
         }
-
-
-        return {
-            filterByAuthor,
-            filterByDate,
-            filterByHashtags,
-            filterByText,
-            sorting,
-            getTweet,
-            validate,
-            generateId,
-            addTweet,
-            editTweet,
-            removeTweet,
-            addComment,
-            changeUser
-        };
     }
-})()
 
-const getTweet = id => tweets.filter(el => el.id === `${id}`)[0];
+    const getTweet = id => tweets.find(el => el.id === `${id}`);
+
+    const validateTweet = tweet => {
+        if (typeof tweet.id === "string" && typeof tweet.createdAt === "object" && (typeof tweet.text === "string" && tweet.text.length <= 280) && (typeof tweet.author === "string" && tweet.author.length > 0) && Array.isArray(tweet.comments)) {
+            return true
+        }
+        return false
+    }
+
+    const validateComments = com => {
+        if (typeof com.id === "string" && typeof com.createdAt === "object" && (typeof com.text === "string" && com.text.length <= 280) && (typeof com.author === "string" && com.author.length > 0)) {
+            return true
+        }
+        return false
+    }
+
+    const addTweet = text => {
+        const newTweet = new Object();
+        newTweet.id = String(+(new Date()));
+        newTweet.createdAt = new Date();
+        newTweet.author = user;
+        newTweet.text = text;
+        newTweet.comments = [];
+        if (validateTweet(newTweet)) tweets.push(newTweet)
+    }
+
+    const editTweet = (id, text) => {
+        const editObj = getTweet(id);
+        if (validateTweet(editObj) && editObj.author === user && (typeof text === "string" && text.length <= 280)) {
+            editObj.text = text;
+            return true
+        }
+        return false
+    }
+
+    const removeTweet = id => {
+        const objRemove = getTweet(id);
+        const numInArr = tweets.findIndex(el => el.id === id)
+        if (objRemove.author === user) {
+            tweets.splice(numInArr, 1)
+            return true
+        }
+        return false
+    }
+
+    const addComment = (id, text) => {
+        const comArr = getTweet(id).comments;
+        console.log(comArr);
+        const comObj = new Object();
+        comObj.id = String(+(new Date()));
+        comObj.text = text;
+        comObj.createdAt = new Date();
+        comObj.author = user;
+        if (validateComments(comObj)) {
+            comArr.push(comObj)
+            return true
+        }
+        return false
+    }
+
+
+    const changeUser = (usr) => user = usr
+
+
+
+    return {
+        filterByAuthor,
+        filterByDate,
+        filterByHashtags,
+        filterByText,
+        sorting,
+        getTweets,
+        getTweet,
+        addTweet,
+        editTweet,
+        removeTweet,
+        addComment,
+        changeUser,
+    };
+
+
+})()
 
 const filterConfig = {
     author: "Bill Gates",
@@ -606,89 +668,13 @@ const filterConfig = {
 }
 
 
-console.log(getTweets(2, 2, filterConfig));
+console.log(myModule.getTweets())
 
-
-const validate = tweet => {
-   if(typeof tweet.id === "string" && typeof tweet.createdAt === "object" && (typeof tweet.text === "string" && tweet.text.length<=280) && (typeof tweet.author === "string" && tweet.author.length>0)){
-       return true
-   }
-   else{
-       return false
-   }
-}
-
-const generateId = () => {
-    let random = Math.floor(Math.random() * 30);
-    tweets.forEach(el => {
-        if(el.id === String(random)){
-            random = generateId()
-        }
-    })
-    return String(random)
-}
-
-const addTweet = text =>{
-    const newTweet = new Object();
-    newTweet.id = generateId();
-    newTweet.createdAt = new Date();
-    newTweet.author = user;
-    newTweet.text = text;
-    newTweet.comments = [];
-    if(validate(newTweet)) tweets.push(newTweet)
-}
-
-addTweet('stroke');
-
-
-const editTweet = (id,text) => {
-    const editObj = getTweet(id);
-    if(editObj.author === user){
-        editObj.text = text;
-    }
-    if(validate(editObj) && editObj.author === user){
-        return true
-    }
-    return false
-}
-
-const removeTweet = id =>{
-    const objRemove = getTweet(id);
-    const numInArr = tweets.findIndex(el=>el.id===id)
-    if(objRemove.author === user){
-        tweets.splice(numInArr,1)
-        return true
-    }
-    return false
-}
-
-console.log(editTweet(13,'new fallen'))
+console.log(editTweet(13, 'new fallen'))
 console.log(getTweet(13))
 console.log(removeTweet("13"))
 console.log(tweets);
-
-
-
-const addComment = (id,text) =>{
-    const comArr = getTweet(id).comments;
-    console.log(comArr);
-    const comObj = new Object();
-    comObj.id = String(+(new Date()));
-    comObj.text = text;
-    comObj.createdAt = new Date();
-    comObj.author = user;
-    if(validate(comObj)){
-        comArr.push(comObj)
-        return true
-    }
-    return
-}
-
-
-const changeUser = (usr) => user = usr
-
-
-console.log(addComment(5,'i feel you'));
+console.log(addComment(5, 'i feel you'));
 console.log(getTweet(5));
 console.log(changeUser("Barak Obama"));
 console.log(tweets)
