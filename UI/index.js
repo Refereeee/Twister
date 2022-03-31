@@ -767,7 +767,10 @@ class TweetFeed {
     }
 
   }
-
+  getArr(id){
+     const arrId = this.list.find(el => el.id === `${id}`);
+     return arrId.id
+  }
   get(id) {
     return this.list.find(el => el.id === `${id}`);
   }
