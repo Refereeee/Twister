@@ -11,7 +11,7 @@ export class TweetView {
     if ((Date.now() - el.createdAt) < 86_400_000) {
       return `${((Date.now() - el.createdAt.getTime()) / 1000 / 60 / 60).toFixed()}h.`;
     }
-    return `${el.createdAt.getDate()}${TweetView[el.createdAt.getMonth()]} ${el.createdAt.getHours()}h.`;
+    return `${el.createdAt.getDate()}${TweetView.month[el.createdAt.getMonth()]} ${el.createdAt.getHours()}h.`;
   };
 
   static postMinutes = (el) => {
