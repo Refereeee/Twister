@@ -110,6 +110,7 @@ header{
     align-items: center;
     gap: 3.3rem;
     padding-right: 2rem;
+
 }
 
 .header__buttons_enter{
@@ -128,15 +129,21 @@ header{
 .header__btns{
     padding:1.6rem 3.2rem;
     border-radius: 0.5rem;
-    font-family: 'Inter';
+    font-family: Inter;
     font-style: normal;
     font-weight: 400;
     font-size: 2.2rem;
     line-height: 2.9rem;
 }
 
-.dn{
+.hidden{
     display: none;
+}
+
+#tweet{
+    width: 71rem;
+    margin: 0 auto;
+    padding-bottom: 5rem;
 }
 
 .df{
@@ -175,7 +182,7 @@ header{
     padding: 0 0 1rem 0;
 }
 
-.filters__search input {
+.filters__search select, .filters__search input {
     background: var(--white);
     border: 0.1rem solid rgba(32, 72, 79, 0.5);
     box-sizing: border-box;
@@ -189,19 +196,6 @@ header{
     color: rgba(7, 33, 37, 0.45);
 }
 
-.filters__search select{
-    background: var(--white);
-    border: 0.1rem solid rgba(32, 72, 79, 0.5);
-    box-sizing: border-box;
-    border-radius: 0.8rem;
-    font-family: Nunito Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1.8rem;
-    line-height: 2.7rem;
-    padding: 1rem;
-    color: rgba(7, 33, 37, 0.45);
-}
 .filters__search span{
     font-family: Nunito Sans;
     font-style: normal;
@@ -322,7 +316,7 @@ main{
     white-space: nowrap;
 }
 
-.posts__psevdo{
+.posts__nickname{
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: bold;
@@ -451,11 +445,9 @@ footer{
     letter-spacing: 0.252rem;
     color: var(--my-gray);
     white-space: nowrap;
-    align-items: center;
-    display: flex;
-    padding-right: 56rem;
-    padding-top: 2rem;
-    padding-left: 7rem;
+    padding-right: 47rem;
+    padding-top: 4rem;
+
 }
 
 
@@ -471,12 +463,13 @@ footer{
 .twit__wrapper{
     margin: 0 auto;
     width: 71rem;
+    position: relative;
 }
 
 .twit__add{
     margin-left: 36.5rem;
     position: fixed;
-    top: 75rem;
+    top: 70rem;
     background-color: var(--white);
 }
 
@@ -693,7 +686,7 @@ footer{
     }
 
     .header__user {
-        padding: 2rem 0rem 0 9rem;
+        padding: 2rem 0 0 9rem;
     }
 
     .header__logo {
@@ -732,7 +725,7 @@ footer{
         white-space: nowrap;
     }
 
-    .posts__psevdo{
+    .posts__nickname{
         padding: 0 0 0 3rem;
     }
 
@@ -765,7 +758,7 @@ footer{
         width: 32rem;
     }
     .header__user{
-        padding: 2rem 0rem 0 6rem;
+        padding: 2rem 0 0 6rem;
     }
 
     .header__logo{

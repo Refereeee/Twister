@@ -5,11 +5,16 @@ module.exports = {
     node: true,
   },
   extends: [
-    'airbnb-base',
+    'airbnb', 'airbnb-base',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
   },
   rules: {
+    'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
+    'no-restricted-syntax': 'off',
+    'no-underscore-dangle': 'off',
+    'eslint-disable-next-line class-methods-use-this': 'off',
   },
 };

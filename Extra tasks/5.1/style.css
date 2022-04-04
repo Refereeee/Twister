@@ -1,0 +1,23 @@
+:root{
+    font-size: 10px;
+}
+table{
+    max-width: 49rem;
+    max-height:49rem;
+    border:1px solid black;
+}
+
+th{
+    width:7rem;
+    height:6.15rem;
+    font-size: 1.8rem;
+    border: 0.1rem solid black;
+}
+
+td{
+    width:7rem;
+    height:6.15rem;
+    border: 0.1rem solid black;
+    text-align: center;
+    font-size: 1.6rem;
+}
