@@ -11,10 +11,15 @@
     border: 0;
 }
 
+main{
+    flex:1 1 auto;
+}
+
 body{
     width: 144rem;
     max-width: 100%;
     margin: 0 auto;
+    height: 100%;
 }
 
 body::-webkit-scrollbar{
@@ -66,6 +71,9 @@ h3{
 .wrapper{
     width: 144rem;
     margin: 0 auto;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 header{
@@ -73,7 +81,10 @@ header{
     top: 0;
     background: var(--white);
     z-index: 999;
+    box-shadow: 0 6px 6px rgba(0,0,0,0.2);;
 }
+
+
 
 .header__logo{
     margin: 2.8rem 0 0 3rem;
@@ -88,6 +99,55 @@ header{
     align-items: center;
     gap: 3rem;
     padding: 2rem 2rem 0 0;
+}
+
+#container__user{
+    display: flex;
+}
+
+.header__buttons{
+    display: flex;
+    align-items: center;
+    gap: 3.3rem;
+    padding-right: 2rem;
+
+}
+
+.header__buttons_enter{
+    border:var(--my-gray) 0.1rem solid;
+    padding:1rem 2rem;
+    background-color: var(--white);
+    color: var(--blue);
+}
+
+.header__buttons_reg{
+    border:var(--my-gray) 0.1rem solid;
+    background: var(--my-gray);
+    color: var(--white);
+}
+
+.header__btns{
+    padding:1.6rem 3.2rem;
+    border-radius: 0.5rem;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.2rem;
+    line-height: 2.9rem;
+}
+
+.hidden{
+    display: none;
+}
+
+#tweet{
+    width: 71rem;
+    margin: 0 auto;
+    padding-bottom: 5rem;
+}
+
+.df{
+    display: flex;
 }
 
 
@@ -122,11 +182,11 @@ header{
     padding: 0 0 1rem 0;
 }
 
-.filters__search input {
+.filters__search select, .filters__search input {
     background: var(--white);
     border: 0.1rem solid rgba(32, 72, 79, 0.5);
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 0.8rem;
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: normal;
@@ -134,6 +194,16 @@ header{
     line-height: 2.7rem;
     padding: 1rem;
     color: rgba(7, 33, 37, 0.45);
+}
+
+.filters__search span{
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: #072125;
+    padding: 0 0 1rem 0;
 }
 
 .filters__search > div{
@@ -237,7 +307,7 @@ main{
     display: flex;
     width: 61rem;
     flex-wrap: wrap;
-
+    position: relative;
 }
 
 .posts__user h3{
@@ -246,7 +316,7 @@ main{
     white-space: nowrap;
 }
 
-.posts__psevdo{
+.posts__nickname{
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: bold;
@@ -265,11 +335,13 @@ main{
     font-size: 1.6rem;
     line-height: 2.2rem;
     letter-spacing: 0.112rem;
+    padding-left: 0.4rem;
 }
 
 #svg-edit{
-    padding-left: 34.3rem;
-    padding-top: 3.2rem;
+    position: absolute;
+    left: 54rem;
+    top: 3.2rem;
 }
 
 .posts__content article{
@@ -281,6 +353,7 @@ main{
     letter-spacing: 0.04em;
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
+    padding-left: 0.4rem;
 }
 
 
@@ -355,6 +428,7 @@ main{
 
 footer{
     margin-top: 5rem;
+
 }
 
 .footer__wrapper{
@@ -371,11 +445,9 @@ footer{
     letter-spacing: 0.252rem;
     color: var(--my-gray);
     white-space: nowrap;
-    align-items: center;
-    display: flex;
-    padding-right: 56rem;
-    padding-top: 2rem;
-    padding-left: 7rem;
+    padding-right: 47rem;
+    padding-top: 4rem;
+
 }
 
 
@@ -383,7 +455,7 @@ footer{
     padding-left: 1rem;
 }
 
-.twit{
+#twit{
     margin: 0 auto;
     padding-bottom: 15rem;
 }
@@ -391,6 +463,7 @@ footer{
 .twit__wrapper{
     margin: 0 auto;
     width: 71rem;
+    position: relative;
 }
 
 .twit__add{
@@ -403,6 +476,11 @@ footer{
 .twit__comment{
     display: flex;
     padding-bottom: 1.2rem;
+}
+
+.twit__comments {
+    width: 71rem;
+    margin: 0 auto;
 }
 
 
@@ -608,7 +686,7 @@ footer{
     }
 
     .header__user {
-        padding: 2rem 0rem 0 9rem;
+        padding: 2rem 0 0 9rem;
     }
 
     .header__logo {
@@ -647,7 +725,7 @@ footer{
         white-space: nowrap;
     }
 
-    .posts__psevdo{
+    .posts__nickname{
         padding: 0 0 0 3rem;
     }
 
@@ -669,6 +747,7 @@ footer{
 
     body{
         overflow-x: hidden ;
+
     }
 
     .wrapper{
@@ -679,7 +758,7 @@ footer{
         width: 32rem;
     }
     .header__user{
-        padding: 2rem 0rem 0 6rem;
+        padding: 2rem 0 0 6rem;
     }
 
     .header__logo{
