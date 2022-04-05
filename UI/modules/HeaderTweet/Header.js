@@ -1,8 +1,7 @@
 import { TweetFeed } from '../TweetFeed/TweetFeed.js';
 
 export class Header {
-  constructor(headerView) {
-    this.headerView = headerView;
+  constructor() {
     this.user = null;
   }
 
@@ -22,8 +21,7 @@ export class Header {
     this.user = user;
   }
 
-  display() {
-    // this.headerView.clear();
-    this.headerView.display(this.user);
+  get userName() {
+    return this.user;
   }
 }

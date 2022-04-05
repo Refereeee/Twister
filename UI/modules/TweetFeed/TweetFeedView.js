@@ -22,7 +22,7 @@ export class TweetFeedView {
     const tweetViewContainer = document.querySelector('#tweet');
     tweetViewContainer.classList.add('hidden');
     backMainArrow.classList.add('hidden');
-    this.tweetContainer.innerHTML = '';
+    this.clear();
     list.forEach((el) => {
       this.tweetContainer.insertAdjacentHTML(
         'afterbegin',

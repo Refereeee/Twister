@@ -10,11 +10,11 @@ import { Header } from './modules/HeaderTweet/Header.js';
 const headerView = new HeaderView('#container__user');
 const tweetFeedView = new TweetFeedView('#posts__loaded');
 const tweetFeed = new TweetFeed(tweets, tweetFeedView);
-const newHeader = new Header(headerView);
+const newHeader = new Header();
 const newFilterView = new FilterView('#filters');
 const newFilters = new Filters(tweets, newFilterView);
 const newTweetView = new TweetView('#tweet');
-const newShowTweet = new TweetFeed(tweets, newTweetView);
+// const newShowTweet = new TweetFeed(tweets, newTweetView);
 
 const filterConfig = {
   author: 'Bill Gates',
@@ -27,42 +27,45 @@ const filterConfig = {
 const setCurrentUser = (name) => {
   newHeader.setCurrentUser(name);
   tweetFeed.setCurrentUser(name);
-  newHeader.display();
-  return true;
+  headerView.display(newHeader.userName);
 };
 
 const addTweet = (text) => {
-  tweetFeed.addTweet(text);
-  tweetFeed.display();
-  return true;
+  if (tweetFeed.addTweet(text)) {
+    tweetFeed.display(tweetFeed.getList());
+  }
 };
 
-const getFeed = (skip = 0, top = 0, filter = {}) => {
-  tweetFeed.getPage(skip, top, filter);
-  tweetFeed.display();
+const getFeed = (skip = 0, top = 10, filter = {}) => {
+  if (tweetFeed.getPage(skip, top, filter)) {
+    tweetFeedView.display(tweetFeed.getState());
+  }
 };
 
 const editTweet = (id, text) => {
-  tweetFeed.editTweet(id, text);
-  tweetFeed.display();
+  if (tweetFeed.editTweet(id, text)) {
+    tweetFeedView.display(tweetFeed.getList());
+  }
 };
 
 const removeTweet = (id) => {
-  tweetFeed.removeTweet(id);
-  tweetFeed.display();
+  if (tweetFeed.removeTweet(id)) {
+    tweetFeedView.display(tweetFeed.getList());
+  }
 };
 
 const showTweet = (id) => {
-  newShowTweet.showTweet(id);
-  newShowTweet.display();
+  if (tweetFeed.showTweet(id)) {
+    newTweetView.display(tweetFeed.showTweet(id));
+  }
 };
 
-// setCurrentUser('Bill Gates');
-// // getFeed(0, 10);
-// getFeed(0, 5, filterConfig);
-// addTweet('kyky');
-// editTweet('13', 'otec');
-// removeTweet('14');
-showTweet('6');
+setCurrentUser('Bill Gates');
+getFeed(0, 20);
+getFeed(0, 10, filterConfig);
+addTweet('kyky');
+editTweet('13', 'otec');
+removeTweet('14');
+showTweet('8');
 
 newFilters.display();

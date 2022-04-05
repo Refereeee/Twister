@@ -70,15 +70,21 @@ export class TweetFeed {
   getPage(skip = 0, top = 10, filterConfig = {}) {
     this.tweetsState = [...this.list];
     if (Object.keys(filterConfig).length === 0) {
-      this.list = this.sorting(skip, top);
+      this.tweetsState = this.sorting(skip, top);
+      this.list = this.tweetsState;
       return this.list;
     }
     this.filterByAuthor(filterConfig);
     this.filterByDate(filterConfig);
     this.filterByText(filterConfig);
     this.filterByHashtag(filterConfig);
-    this.list = this.sorting(skip, top);
+    this.tweetsState = this.sorting(skip, top);
+    this.list = this.tweetsState;
     return this.list;
+  }
+
+  getState() {
+    return this.tweetsState;
   }
 
   getArr(id) {
@@ -111,7 +117,7 @@ export class TweetFeed {
   }
 
   showTweet(id) {
-   return this.list = this.list.find((el) => el.id === id);
+    return this.list.find((el) => el.id === id);
   }
 
   editTweet(id, text) {
@@ -131,6 +137,7 @@ export class TweetFeed {
 
     if (TweetFeed.validateUser(this.user)) {
       this.list.splice(numInArr, 1);
+      console.log(this.list);
       return true;
     }
 
