@@ -34,6 +34,11 @@ export class TweetView {
     const posts = document.querySelector('.posts');
     const filters = document.querySelector('#filters');
     const login = document.querySelector('#login');
+    const registration = document.querySelector('#registration');
+    const back = document.querySelector('.back__main');
+    back.classList.remove('hidden');
+    this.containerId.classList.remove('hidden');
+    registration.classList.add('hidden');
     login.classList.add('hidden');
     filters.classList.add('hidden');
     posts.classList.add('hidden');
@@ -47,7 +52,7 @@ export class TweetView {
                   <div class="posts__user">
                       <h3>${tweet.author}</h3>
                       <span class="posts__nickname">@${TweetView.nickname(tweet.author)}</span>
-                      <svg width="27" height="8" viewBox="0 0 27 8" id="svg-edit" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_b_136_208)"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.16667 3.58333C6.16667 5.01007 5.01007 6.16667 3.58333 6.16667C2.1566 6.16667 1 5.01007 1 3.58333C1 2.1566 2.1566 1 3.58333 1C4.26848 1 4.92556 1.27217 5.41003 1.75664C5.8945 2.24111 6.16667 2.89819 6.16667 3.58333Z" stroke="#377DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><path fill-rule="evenodd" clip-rule="evenodd" d="M15.9833 3.58333C15.9833 5.01007 14.8267 6.16667 13.4 6.16667C11.9732 6.16667 10.8167 5.01007 10.8167 3.58333C10.8167 2.1566 11.9732 1 13.4 1C14.8267 1 15.9833 2.1566 15.9833 3.58333Z" stroke="#377DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path fill-rule="evenodd" clip-rule="evenodd" d="M25.8002 3.58333C25.8002 5.01007 24.6436 6.16667 23.2169 6.16667C21.7901 6.16667 20.6335 5.01007 20.6335 3.58333C20.6335 2.1566 21.7901 1 23.2169 1C24.6436 1 25.8002 2.1566 25.8002 3.58333Z" stroke="#377DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><filter id="filter0_b_136_208" x="-108" y="-108" width="223.167" height="223.167" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feGaussianBlur in="BackgroundImage" stdDeviation="54"/><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_136_208"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_136_208" result="shape"/></filter></defs></svg>
+                        <img src="../../svg/edit.svg" class="svg-edit" alt="edit"> 
                     <div class="posts__content">
                           <span class="posts_time">${TweetView.postTime(tweet)}</span>
                           <article>${tweet.text}</article>
@@ -71,7 +76,7 @@ export class TweetView {
                     </div>
                     <div class="posts__user">
                         <h3>${el.author}</h3>
-                        <span class="posts__nickname">@${TweetView.nickname(el.author)}</span>
+                        <span class="posts__nickname">@${TweetView.nickname(el.author)}</span>=
                         <div class="posts__content">
                             <span class="posts_time">${TweetView.commentTime(el)}</span>
                             <article>${el.text}</article>

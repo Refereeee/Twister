@@ -337,10 +337,11 @@ main {
     padding-left: 0.4rem;
 }
 
-#svg-edit {
+.svg-edit {
     position: absolute;
     left: 54rem;
     top: 3.2rem;
+    cursor: pointer;
 }
 
 .posts__content article {

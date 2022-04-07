@@ -1,4 +1,7 @@
-import { getFeed, newFilters, setCurrentUser } from '../index.js';
+// eslint-disable-next-line import/no-cycle
+import {
+  getFeed, newFilters, setCurrentUser, showTweet,
+} from '../index.js';
 import { userCollection } from './userCollection/userCollection.js';
 
 export class TweetsController {
@@ -7,12 +10,15 @@ export class TweetsController {
     this.showMyTweets();
     newFilters.display();
     this.filterView();
+    // this.editTweetListener();
     this.pagination();
     // this.formSubmit();
     this.signIn();
     this.signUp();
+    this.showTweetOn();
     this.numMinFeeds = 0;
     this.numMaxFeeds = 10;
+    this.backMainPage();
   }
 
   showMyTweets() {
@@ -145,6 +151,26 @@ export class TweetsController {
         });
         document.location.href = document.location.pathname;
       });
+    });
+  }
+
+  showTweetOn() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const onLoadTweets = document.querySelectorAll('.posts__public');
+      onLoadTweets.forEach((el) => {
+        el.addEventListener('click', function (event) {
+          if (!event.target.classList.contains('svg-edit')) {
+            showTweet(this.id);
+          }
+        });
+      });
+    });
+  }
+
+  backMainPage() {
+    const back = document.querySelector('.back__main');
+    back.addEventListener('click', () => {
+      document.location.href = document.location.pathname;
     });
   }
 }

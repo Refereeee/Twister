@@ -32,7 +32,7 @@ export class Comment {
     // }
 
     this._id = options.id;
-    this._createdAt = options.createdAt;
+    this._createdAt = new Date(options.createdAt);
     this._author = options.author;
     this._text = options.text;
   }
