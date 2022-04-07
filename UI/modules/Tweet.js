@@ -1,3 +1,5 @@
+import { Comment } from './Comment.js';
+
 export class Tweet {
   static maxValueLength = 280;
 
@@ -6,19 +8,22 @@ export class Tweet {
     createdAt: (val) => typeof val === 'object' && val instanceof Date,
     text: (val) => typeof val === 'string' && val.length <= Tweet.maxValueLength && val.length,
     author: (val) => typeof val === 'string' && val.trim().length,
-    comments: (val) => Array.isArray(val),
+    comments: (val) => Array.isArray(val) && val.every((com) => Comment.validate(com)),
   };
 
   constructor(options) {
-    if (!Tweet.validate(options)) {
-      throw new Error('TweetView validate failed');
-    }
+    // if (!Tweet.validate(options)) {
+    //   throw new Error('TweetView validate failed');
+    // }
 
     this._id = options.id;
-    this._createdAt = options.createdAt;
+    this._createdAt = new Date(options.createdAt);
     this._author = options.author;
     this._text = options.text;
-    this._comments = options.comments;
+    this._comments = [];
+    options.comments.forEach((com) => {
+      this._comments.push(new Comment(com));
+    });
   }
 
   static validate(tweet) {
@@ -60,5 +65,15 @@ export class Tweet {
 
   get comments() {
     return this._comments;
+  }
+
+  toJSON() {
+    return {
+      id: this._id,
+      author: this._author,
+      text: this._text,
+      createdAt: this._createdAt,
+      comments: this._comments,
+    };
   }
 }

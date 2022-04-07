@@ -1,6 +1,3 @@
-import { Tweet } from '../Tweet.js';
-import { TweetFeed } from './TweetFeed.js';
-
 export class TweetFeedView {
   constructor(containerId) {
     this.tweetContainer = document.querySelector(containerId);
@@ -20,9 +17,18 @@ export class TweetFeedView {
   display(list) {
     const backMainArrow = document.querySelector('.back__main');
     const tweetViewContainer = document.querySelector('#tweet');
+    const login = document.querySelector('#login');
+    const posts = document.querySelector('.posts');
+    const filters = document.querySelector('#filters');
+    const registration = document.querySelector('#registration');
+    login.classList.add('hidden');
     tweetViewContainer.classList.add('hidden');
+    registration.classList.add('hidden');
     backMainArrow.classList.add('hidden');
+    posts.classList.remove('hidden');
+    filters.classList.remove('hidden');
     this.clear();
+    console.log(list);
     list.forEach((el) => {
       this.tweetContainer.insertAdjacentHTML(
         'afterbegin',

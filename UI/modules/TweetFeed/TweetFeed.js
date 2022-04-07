@@ -1,4 +1,6 @@
 import { Tweet } from '../Tweet.js';
+import { Comment } from '../Comment.js';
+import { fetchList } from '../../fetcher.js';
 
 export class TweetFeed {
   static maxValueLength = 280;
@@ -11,12 +13,13 @@ export class TweetFeed {
     return typeof text === 'string' && text.length <= TweetFeed.maxValueLength;
   }
 
-  constructor(tweets, viewClass) {
-    this.viewClass = viewClass;
+  constructor() {
     this.user = null;
     this.list = [];
     this.tweetsState = [];
-    this.addAll(tweets);
+    // this.addAll(tweets);
+    this.storageKey = 'list';
+    this.restore();
   }
 
   filterByAuthor(filterConfig) {
@@ -27,21 +30,21 @@ export class TweetFeed {
 
   filterByDate(filterConfig) {
     if (filterConfig?.dateFrom && filterConfig?.dateTo) {
-      this.tweetsState = this.tweetsState.filter((el) => el.createdAt >= filterConfig.dateFrom
-         && el.createdAt <= filterConfig.dateTo);
+      this.tweetsState = this.tweetsState.filter((el) => el.createdAt >= new Date(filterConfig.dateFrom)
+         && el.createdAt <= new Date(filterConfig.dateTo));
     }
     if (filterConfig?.dateFrom) {
-      this.tweetsState = this.tweetsState.filter((el) => el.createdAt > filterConfig.dateFrom);
+      this.tweetsState = this.tweetsState.filter((el) => el.createdAt > new Date(filterConfig.dateFrom));
     }
     if (filterConfig?.dateTo) {
-      this.tweetsState = this.tweetsState.filter((el) => el.createdAt < filterConfig?.dateTo);
+      this.tweetsState = this.tweetsState.filter((el) => el.createdAt < new Date(filterConfig.dateTo));
     }
   }
 
   filterByText(filterConfig) {
     if (filterConfig?.text) {
       this.tweetsState = this.tweetsState.filter((el) => {
-        if (el.text.includes(filterConfig.text)) {
+        if (el.text.toLowerCase().includes(filterConfig.text.toLowerCase())) {
           return el;
         }
       });
@@ -49,14 +52,14 @@ export class TweetFeed {
   }
 
   filterByHashtag(filterConfig) {
-    if (filterConfig?.hashTag) {
+    if (filterConfig?.hashTags) {
       this.tweetsState = this.tweetsState.filter((el) => {
         const arrText = el.text.split(' ');
         // const diff = (a1, a2) => a1.filter(i => a2.includes(i));
         // if (diff(arrText, filterConfig?.hashTags).length === filterConfig?.hashTags.length) {
         //   return el;
         // }
-        if (arrText.includes(filterConfig.hashTag)) {
+        if (arrText.includes(filterConfig.hashTags)) {
           return el;
         }
       });
@@ -71,25 +74,18 @@ export class TweetFeed {
     this.tweetsState = [...this.list];
     if (Object.keys(filterConfig).length === 0) {
       this.tweetsState = this.sorting(skip, top);
-      this.list = this.tweetsState;
-      return this.list;
+      return this.tweetsState;
     }
     this.filterByAuthor(filterConfig);
     this.filterByDate(filterConfig);
     this.filterByText(filterConfig);
     this.filterByHashtag(filterConfig);
     this.tweetsState = this.sorting(skip, top);
-    this.list = this.tweetsState;
-    return this.list;
+    return this.tweetsState;
   }
 
   getState() {
     return this.tweetsState;
-  }
-
-  getArr(id) {
-    const arrId = this.list.find((el) => el.id === `${id}`);
-    return arrId.id;
   }
 
   get(id) {
@@ -124,7 +120,6 @@ export class TweetFeed {
     const editObj = this.get(id);
 
     if (TweetFeed.validateUser(this.user) && TweetFeed.validateText(text)) {
-      console.log(editObj);
       editObj.text = text;
       return true;
     }
@@ -137,7 +132,6 @@ export class TweetFeed {
 
     if (TweetFeed.validateUser(this.user)) {
       this.list.splice(numInArr, 1);
-      console.log(this.list);
       return true;
     }
 
@@ -189,16 +183,30 @@ export class TweetFeed {
     return garbage;
   }
 
-  clear() {
-    this.list = [];
-  }
-
-  display() {
-    this.viewClass.clear();
-    this.viewClass.display(this.list);
-  }
-
   getList() {
     return this.list;
+  }
+
+  restore() {
+    const data = localStorage.getItem(this.storageKey) || JSON.stringify(fetchList());
+
+    try {
+      this.listProcess(JSON.parse(data));
+    } catch (e) {
+      this.listProcess(fetchList());
+      this.save();
+    }
+  }
+
+  listProcess(list) {
+    list.forEach((tweet) => {
+      if (Tweet.validate(tweet)) {
+        this.list.push(new Tweet(tweet));
+      }
+    });
+  }
+
+  save() {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.list));
   }
 }

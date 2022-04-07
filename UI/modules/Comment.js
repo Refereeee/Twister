@@ -27,9 +27,9 @@ export class Comment {
   }
 
   constructor(options) {
-    if (!Comment.validate(options)) {
-      throw new Error('Comment validate failed');
-    }
+    // if (!Comment.validate(options)) {
+    //   throw new Error('Comment validate failed');
+    // }
 
     this._id = options.id;
     this._createdAt = options.createdAt;
@@ -67,5 +67,14 @@ export class Comment {
 
   set text(newText) {
     return (Comment.validateStructure.text(newText)) ? this._text = newText : this._text;
+  }
+
+  toJSON() {
+    return {
+      id: this._id,
+      author: this._author,
+      text: this._text,
+      createdAt: this._createdAt,
+    };
   }
 }

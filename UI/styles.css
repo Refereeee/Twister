@@ -1,4 +1,4 @@
-:root{
+:root {
     font-size: 10px;
     --my-gray: #4E5D78;
     --white: #ffffff;
@@ -11,21 +11,22 @@
     border: 0;
 }
 
-main{
-    flex:1 1 auto;
+main {
+    flex: 1 1 auto;
 }
 
-body{
+body {
     width: 144rem;
     max-width: 100%;
     margin: 0 auto;
     height: 100%;
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
     width: 0;
 }
-h1{
+
+h1 {
     font-family: Bebas Neue;
     font-style: normal;
     font-weight: normal;
@@ -35,7 +36,7 @@ h1{
     padding: 4rem 0 0 2.1rem;
 }
 
-h2{
+h2 {
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
@@ -46,7 +47,7 @@ h2{
     position: relative;
 }
 
-h2::after{
+h2::after {
     content: "";
     width: 23.5rem;
     height: 0.2rem;
@@ -56,7 +57,7 @@ h2::after{
     left: 0;
 }
 
-h3{
+h3 {
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: bold;
@@ -67,8 +68,7 @@ h3{
 }
 
 
-
-.wrapper{
+.wrapper {
     width: 144rem;
     margin: 0 auto;
     min-height: 100%;
@@ -76,36 +76,35 @@ h3{
     flex-direction: column;
 }
 
-header{
+header {
     position: sticky;
     top: 0;
     background: var(--white);
     z-index: 999;
-    box-shadow: 0 6px 6px rgba(0,0,0,0.2);;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);;
 }
 
 
-
-.header__logo{
+.header__logo {
     margin: 2.8rem 0 0 3rem;
 }
 
-.header__main{
+.header__main {
     display: flex;
 }
 
-.header__user{
+.header__user {
     display: flex;
     align-items: center;
     gap: 3rem;
     padding: 2rem 2rem 0 0;
 }
 
-#container__user{
+#container__user {
     display: flex;
 }
 
-.header__buttons{
+.header__buttons {
     display: flex;
     align-items: center;
     gap: 3.3rem;
@@ -113,21 +112,21 @@ header{
 
 }
 
-.header__buttons_enter{
-    border:var(--my-gray) 0.1rem solid;
-    padding:1rem 2rem;
+.header__buttons_enter {
+    border: var(--my-gray) 0.1rem solid;
+    padding: 1rem 2rem;
     background-color: var(--white);
     color: var(--blue);
 }
 
-.header__buttons_reg{
-    border:var(--my-gray) 0.1rem solid;
+.header__buttons_reg {
+    border: var(--my-gray) 0.1rem solid;
     background: var(--my-gray);
     color: var(--white);
 }
 
-.header__btns{
-    padding:1.6rem 3.2rem;
+.header__btns {
+    padding: 1.6rem 3.2rem;
     border-radius: 0.5rem;
     font-family: Inter;
     font-style: normal;
@@ -136,35 +135,35 @@ header{
     line-height: 2.9rem;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
-#tweet{
+#tweet {
     width: 71rem;
     margin: 0 auto;
     padding-bottom: 5rem;
 }
 
-.df{
+.df {
     display: flex;
 }
 
 
-.header__wrapper{
+.header__wrapper {
     display: flex;
     justify-content: space-between;
 }
 
-.main__column{
+.main__column {
     flex-direction: column;
 }
 
-.filters__wrapper{
+.filters__wrapper {
     margin: 0;
 }
 
-.filters__search{
+.filters__search {
     padding: 3.5rem 0 0 0.8rem;
     width: 22.5rem;
     display: flex;
@@ -172,7 +171,7 @@ header{
     gap: 2.4rem;
 }
 
-.filters__search label{
+.filters__search label {
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: normal;
@@ -196,7 +195,7 @@ header{
     color: rgba(7, 33, 37, 0.45);
 }
 
-.filters__search span{
+.filters__search span {
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: normal;
@@ -206,38 +205,38 @@ header{
     padding: 0 0 1rem 0;
 }
 
-.filters__search > div{
+.filters__search > div {
     flex-direction: column;
     display: flex;
 }
 
 
-.filters__date{
+.filters__date {
     gap: 0.5rem;
 }
 
-.filters__btn{
+.filters__btn {
     margin: 0 0 0 4.7rem;
 }
 
-main{
+main {
     display: flex;
 }
 
-.posts{
+.posts {
     padding: 0 0 0 17rem;
 }
 
-.posts__wrapper{
+.posts__wrapper {
     width: 72rem;
 }
 
-.posts__add_picture{
+.posts__add_picture {
     padding-top: 2rem;
     padding-right: 1rem;
 }
 
-.posts__addText{
+.posts__addText {
     margin-top: 2rem;
     background: var(--white);
     border: 0.1rem solid rgba(78, 93, 120, 0.5);
@@ -251,18 +250,18 @@ main{
     letter-spacing: 0.04em;
 }
 
-.posts__textarea{
+.posts__textarea {
     display: flex;
     margin-bottom: 2rem;
 }
 
-.posts__files{
+.posts__files {
     padding-left: 8.3rem;
     display: flex;
 
 }
 
-.posts__files_text{
+.posts__files_text {
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: normal;
@@ -271,7 +270,7 @@ main{
     letter-spacing: 0.072rem;
 }
 
-.btn{
+.btn {
     background: var(--blue);
     border: 0.1rem solid var(--blue);
     box-sizing: border-box;
@@ -287,7 +286,7 @@ main{
     color: var(--white);
 }
 
-.posts__files_btn{
+.posts__files_btn {
     margin-left: 28.6rem;
     margin-top: 0.8rem;
 }
@@ -298,25 +297,25 @@ main{
 }
 
 
-.posts__public{
+.posts__public {
     display: flex;
     padding-bottom: 1.2rem;
 }
 
-.posts__user{
+.posts__user {
     display: flex;
     width: 61rem;
     flex-wrap: wrap;
     position: relative;
 }
 
-.posts__user h3{
+.posts__user h3 {
     padding-top: 2rem;
     padding-left: 0.5rem;
     white-space: nowrap;
 }
 
-.posts__nickname{
+.posts__nickname {
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: bold;
@@ -328,7 +327,7 @@ main{
     color: rgba(78, 93, 120, 0.6);
 }
 
-.posts_time{
+.posts_time {
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: 600;
@@ -338,13 +337,13 @@ main{
     padding-left: 0.4rem;
 }
 
-#svg-edit{
+#svg-edit {
     position: absolute;
     left: 54rem;
     top: 3.2rem;
 }
 
-.posts__content article{
+.posts__content article {
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: normal;
@@ -357,7 +356,7 @@ main{
 }
 
 
-.posts__content{
+.posts__content {
     padding-top: 0.5rem;
     padding-left: 0.2rem;
     max-width: 61rem;
@@ -365,7 +364,7 @@ main{
 
 }
 
-.posts__comment_number{
+.posts__comment_number {
     position: absolute;
     top: -1rem;
     left: 2rem;
@@ -379,16 +378,16 @@ main{
     color: var(--blue);
 }
 
-.posts__comment{
+.posts__comment {
     position: relative;
 }
 
-.posts__content svg{
+.posts__content svg {
     padding-left: 0.3rem;
     padding-top: 0.4rem;
 }
 
-.posts__button{
+.posts__button {
     background: var(--white);
     border: 0.1rem solid var(--blue);
     box-sizing: border-box;
@@ -403,12 +402,12 @@ main{
     color: var(--blue);
 }
 
-.posts__content_img{
+.posts__content_img {
     padding-bottom: 1.2rem;
 }
 
 
-.footer__mail{
+.footer__mail {
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
@@ -417,7 +416,7 @@ main{
     color: var(--my-gray);
 }
 
-.footer__name{
+.footer__name {
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
@@ -426,17 +425,17 @@ main{
     color: var(--my-gray);
 }
 
-footer{
+footer {
     margin-top: 5rem;
 
 }
 
-.footer__wrapper{
+.footer__wrapper {
     display: flex;
     justify-content: space-between;
 }
 
-.back__main{
+.back__main {
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: 800;
@@ -451,29 +450,29 @@ footer{
 }
 
 
-.back__word{
+.back__word {
     padding-left: 1rem;
 }
 
-#twit{
+#twit {
     margin: 0 auto;
     padding-bottom: 15rem;
 }
 
-.twit__wrapper{
+.twit__wrapper {
     margin: 0 auto;
     width: 71rem;
     position: relative;
 }
 
-.twit__add{
+.twit__add {
     margin-left: 36.5rem;
     position: fixed;
     top: 70rem;
     background-color: var(--white);
 }
 
-.twit__comment{
+.twit__comment {
     display: flex;
     padding-bottom: 1.2rem;
 }
@@ -484,18 +483,15 @@ footer{
 }
 
 
-
-
-
 .twit::-webkit-scrollbar {
     width: 0;
 }
 
-.twit__files_btn{
+.twit__files_btn {
     margin-left: 44rem;
 }
 
-.posts_hashtags{
+.posts_hashtags {
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: 800;
@@ -506,170 +502,188 @@ footer{
 }
 
 
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
 
-    :root{
+    :root {
         font-size: 9px;
     }
+
     .wrapper {
         width: 102rem;
     }
-    .header__user{
+
+    .header__user {
         gap: 1rem;
     }
-    .posts{
+
+    .posts {
         padding: 0 0 0 5rem;
     }
+
     .back__main {
         left: 34rem;
         top: -6rem;
     }
 }
+
 @media screen and (max-width: 768px) {
 
-    :root{
+    :root {
         font-size: 8px;
     }
+
     .wrapper {
         width: 77rem;
     }
-    .header__user{
+
+    .header__user {
         gap: 0.5rem;
         padding: 2rem 0 0 0;
     }
-    .posts__wrapper{
+
+    .posts__wrapper {
         width: 48rem;
     }
-    .posts__files{
+
+    .posts__files {
         width: 40rem;
     }
 
-    .posts__files_btn{
+    .posts__files_btn {
         margin-left: 9rem;
     }
-    #svg-edit{
+
+    #svg-edit {
         padding-left: 12.3rem;
     }
-    .posts__button{
+
+    .posts__button {
         white-space: nowrap;
         margin: 2rem 0 0 10.5rem;
     }
 
-    .posts__content_img img{
+    .posts__content_img img {
         max-width: 37rem;
         width: 100%;
     }
 
-    .footer__wrapper{
+    .footer__wrapper {
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 2rem;
     }
 
-    .twit__files_btn{
+    .twit__files_btn {
         margin-left: 45rem;
         padding: 1rem 4rem;
     }
-    .back__main{
+
+    .back__main {
         display: flex;
         align-items: center;
     }
-    .back__word{
+
+    .back__word {
         font-size: 2.8rem;
     }
 }
 
-@media screen and (max-width: 425px){
-    :root{
+@media screen and (max-width: 425px) {
+    :root {
         font-size: 7px;
     }
 
 
-    .header__wrapper{
+    .header__wrapper {
         flex-direction: column;
     }
-    .wrapper{
+
+    .wrapper {
         width: 42.5rem;
     }
 
-    .header{
+    .header {
         padding-bottom: 5rem;
     }
 
-    .back__main{
+    .back__main {
         left: 15rem;
         top: -4rem;
     }
 
-    .header__user{
+    .header__user {
         padding: 2rem 0 0 12rem;
     }
 
-    .header__user img{
+    .header__user img {
         display: none;
     }
-    .header__logo{
+
+    .header__logo {
         margin: 2.8rem 0 0 11rem;
     }
 
-    main{
+    main {
         flex-direction: column;
     }
 
-    .filters__wrapper{
+    .filters__wrapper {
         padding-left: 11rem;
     }
-    .filters__title{
+
+    .filters__title {
         padding: 4rem 0 0 18rem;
     }
-    .filters__search{
+
+    .filters__search {
         padding: 3.5rem 0 0 11.8rem;
         width: 23.5rem;
     }
 
 
-    h2::after{
+    h2::after {
         left: 12rem;
         width: 23.5rem;
     }
 
-    .posts__files_btn{
+    .posts__files_btn {
         max-width: 12.6rem;
         width: 100%;
         height: 4.1rem;
         margin-left: 3rem;
     }
 
-    .posts__files{
+    .posts__files {
         width: 28rem;
     }
 
-    .posts{
+    .posts {
         padding: 0 0 0 16rem;
     }
 
-    .posts__wrapper{
+    .posts__wrapper {
         width: 37rem;
     }
 
-    #svg-edit{
+    #svg-edit {
         padding-left: 3.3rem;
     }
 
-    .posts__content_img img{
+    .posts__content_img img {
         max-width: 28rem;
         width: 100%;
     }
 
-    .posts__button{
+    .posts__button {
         margin: 2rem 0 0 5.5rem;
     }
 
-    .twit__wrapper{
+    .twit__wrapper {
         width: 40rem;
     }
-    .twit__files_btn{
+
+    .twit__files_btn {
         margin-left: 18rem;
     }
 }
@@ -725,11 +739,11 @@ footer{
         white-space: nowrap;
     }
 
-    .posts__nickname{
+    .posts__nickname {
         padding: 0 0 0 3rem;
     }
 
-    #svg-edit{
+    #svg-edit {
         padding: 0.6rem 0 0 4rem;
     }
 
@@ -737,74 +751,155 @@ footer{
         width: 34rem;
     }
 
-    .twit__files_btn{
+    .twit__files_btn {
         margin-left: 12rem;
     }
 
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 320px) {
 
-    body{
-        overflow-x: hidden ;
+    body {
+        overflow-x: hidden;
 
     }
 
-    .wrapper{
+    .wrapper {
         width: 32rem;
     }
 
-    .header__wrapper{
+    .header__wrapper {
         width: 32rem;
     }
-    .header__user{
+
+    .header__user {
         padding: 2rem 0 0 6rem;
     }
 
-    .header__logo{
+    .header__logo {
         margin: 2.8rem 0 0 5rem;
     }
 
-    .filters__title{
+    .filters__title {
         padding: 4rem 0 0 6rem;
     }
 
-    h2::after{
+    h2::after {
         left: 6rem;
         width: 23.5rem;
     }
 
-    .posts__wrapper{
+    .posts__wrapper {
         width: 26rem;
     }
-    .filters__search{
+
+    .filters__search {
         padding: 3.5rem 0 0 6rem;
     }
-    .posts__files_btn{
+
+    .posts__files_btn {
         max-width: 5.6rem;
         width: 100%;
         height: 3rem;
         margin-left: 1rem;
     }
 
-    .posts__addImg{
+    .posts__addImg {
         display: flex;
         align-items: center;
     }
-    .posts__files_text{
+
+    .posts__files_text {
         font-size: 1.4rem;
 
     }
 
-    .posts__files{
+    .posts__files {
         width: 23rem;
     }
-    .posts__addImg{
+
+    .posts__addImg {
         white-space: nowrap;
     }
-    .posts__button{
+
+    .posts__button {
         margin: 2rem 0 0 3.5rem;
     }
 
 
+}
+
+
+#login , #registration {
+    width: 144rem;
+    padding-top: 11rem;
+    padding-bottom: 12rem;
+    margin: 0 auto;
+    background-color: var(--my-gray);
+}
+
+
+
+.sign_in h4 , .sign_up h4 {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 4.4rem;
+    color: var(--blue);
+    align-self: center;
+}
+
+.sign_in,.sign_up {
+    display: flex;
+    flex-direction: column;
+    width: 59rem;
+    height: 39.8rem;
+    background-color: white;
+    border-radius: 1.2rem;
+    margin: 0 auto;
+    padding: 5rem 6rem;
+}
+
+.sign_in_form,.sign_up_form {
+    display: flex;
+    flex-direction: column;
+    padding-right: 8rem;
+    padding-top: 2rem;
+    gap: 1.5rem;
+}
+
+.sign_in_form span,.sign_up_form span{
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+}
+
+.sign_in_underline, .sign_up_underline{
+    text-decoration: underline;
+}
+
+.sign_in_form label, .sign_up_form label {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: #072125;
+}
+
+.sign_in_form input, .sign_up_form input {
+    border: 0.1rem solid rgba(32, 72, 79, 0.1);
+    box-sizing: border-box;
+    border-radius: 0.8rem;
+    padding: 1.2rem 1.6rem;
+}
+
+.sign_in_button, .sign_up_button{
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 1rem;
+    border-radius: 0.7rem;
 }

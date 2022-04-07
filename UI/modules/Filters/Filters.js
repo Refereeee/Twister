@@ -34,6 +34,7 @@ export class Filters {
 
     this.list.forEach((el) => arrNames.push(el.author));
     this.arrUniqNames = Array.from(new Set(arrNames));
+    // return this.arrUniqNames;
   }
 
   findHashTags() {
@@ -55,27 +56,27 @@ export class Filters {
     this.filtersView.display(this.arrUniqNames, this.uniqHashtags);
   }
 
-  static addFilterConfig({
-    author, createdAt, createdFrom, text, hashTags,
-  }) {
-    const filterConfig = {};
-    if (author) {
-      filterConfig.author = author;
-    }
-    if (createdAt) {
-      filterConfig.createdAt = createdAt;
-    }
-    if (createdFrom) {
-      filterConfig.createdFrom = createdFrom;
-    }
-    if (text) {
-      filterConfig.text = text;
-    }
-    if (hashTags) {
-      filterConfig.hashTags = hashTags;
-    }
-
-    this.filter = filterConfig;
-    console.log(this.filter);
-  }
+  // static addFilterConfig({
+  //   author, createdAt, createdFrom, text, hashTags,
+  // }) {
+  //   const filterConfig = {};
+  //   if (author) {
+  //     filterConfig.author = author;
+  //   }
+  //   if (createdAt) {
+  //     filterConfig.createdAt = createdAt;
+  //   }
+  //   if (createdFrom) {
+  //     filterConfig.createdFrom = createdFrom;
+  //   }
+  //   if (text) {
+  //     filterConfig.text = text;
+  //   }
+  //   if (hashTags) {
+  //     filterConfig.hashTags = hashTags;
+  //   }
+  //
+  //   this.filter = filterConfig;
+  //   console.log(this.filter);
+  // }
 }

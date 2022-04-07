@@ -33,6 +33,8 @@ export class TweetView {
   display(tweet) {
     const posts = document.querySelector('.posts');
     const filters = document.querySelector('#filters');
+    const login = document.querySelector('#login');
+    login.classList.add('hidden');
     filters.classList.add('hidden');
     posts.classList.add('hidden');
     this.containerId.insertAdjacentHTML(
