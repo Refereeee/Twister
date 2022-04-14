@@ -8,6 +8,7 @@ import { HeaderView } from './modules/HeaderTweet/Header.view.js';
 import { Header } from './modules/HeaderTweet/Header.js';
 // import { UserSignInView } from './modules/UserCollection/UserSignInView.js';
 import { TweetsController } from './modules/TweetsController.js';
+import { userCollection } from './modules/UserCollection/UserCollection.js';
 
 const headerView = new HeaderView('#container__user');
 const tweetFeedView = new TweetFeedView('#posts__loaded');
@@ -16,7 +17,7 @@ const newHeader = new Header();
 const newFilterView = new FilterView('#filters');
 export const newFilters = new Filters(tweets, newFilterView);
 const newTweetView = new TweetView('#tweet');
-const newTweetsController = new TweetsController();
+
 // const newUserLoginView = new UserSignInView('#login');
 
 // export const loginView = () => {
@@ -33,6 +34,12 @@ const newTweetsController = new TweetsController();
 //   // text: 'know',
 // };
 
+const newTweetsController = new TweetsController({
+  tweetFeed,
+  tweetFeedView,
+  loadMoreSelector: '.posts__button',
+});
+
 export const setCurrentUser = (name) => {
   newHeader.setCurrentUser(name);
   tweetFeed.setCurrentUser(name);
@@ -41,24 +48,20 @@ export const setCurrentUser = (name) => {
 
 export const addTweet = (text) => {
   if (tweetFeed.addTweet(text)) {
-    tweetFeed.display(tweetFeed.getList());
-  }
-};
-
-export const getFeed = (skip = 0, top = 10, filter = {}) => {
-  if (tweetFeed.getPage(skip, top, filter)) {
-    tweetFeedView.display(tweetFeed.getState());
+    tweetFeedView.display(tweetFeed.getList());
   }
 };
 
 export const editTweet = (id, text) => {
   if (tweetFeed.editTweet(id, text)) {
+    tweetFeedView.clear();
     tweetFeedView.display(tweetFeed.getList());
   }
 };
 
 export const removeTweet = (id) => {
   if (tweetFeed.removeTweet(id)) {
+    tweetFeedView.clear();
     tweetFeedView.display(tweetFeed.getList());
   }
 };
@@ -68,6 +71,33 @@ export const showTweet = (id) => {
     newTweetView.display(tweetFeed.showTweet(id));
   }
 };
+
+export const addComment = (id,text) =>{
+  tweetFeed.addComment(id,text);
+  newTweetView.display(tweetFeed.showTweet(id))
+}
+
+
+// const searchParams = new URLSearchParams(document.location.search);
+
+// const login = searchParams.get('login');
+// if (login) {
+//   const token = userCollection.login(login, searchParams.get('password'));
+//   if (token) {
+//     localStorage.setItem('token', token);
+//   }
+//   document.location.href = document.location.pathname;
+// }
+document.addEventListener('DOMContentLoaded', () => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const user = userCollection.verify(token);
+    if (user) {
+      // newTweetsController.showMyTweetsView({});
+      setCurrentUser(user.login);
+    }
+  }
+});
 
 // setCurrentUser('Bill Gates');
 // getFeed(0, 20);

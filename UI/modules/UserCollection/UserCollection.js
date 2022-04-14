@@ -1,7 +1,6 @@
 import { usersMock } from '../../mock/users.js';
 
 export class UserCollection {
-  // eslint-disable-next-line no-shadow
   constructor(usersMock) {
     this.users = [];
     const storage = localStorage.getItem('server-users') || JSON.stringify(usersMock);
@@ -28,8 +27,11 @@ export class UserCollection {
     if (user) {
       return JSON.stringify(user); // Это типа токен JWT
     }
-
     return false;
+  }
+
+  remove(token) {
+    localStorage.removeItem('token');
   }
 
   verify(token) {

@@ -14,9 +14,9 @@ export class Header {
   }
 
   setCurrentUser(user) {
-    if (!TweetFeed.validateUser(user)) {
-      throw new Error('Validate user error');
-    }
+    // if (!TweetFeed.validateUser(user)) {
+    //   throw new Error('Validate user error');
+    // }
 
     this.user = user;
   }

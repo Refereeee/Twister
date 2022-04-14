@@ -6,6 +6,7 @@ export class Comment {
     createdAt: (val) => typeof val === 'object' && val instanceof Date,
     text: (val) => typeof val === 'string' && val.length <= Comment.maxValueLength && val.length,
     author: (val) => typeof val === 'string' && val.trim().length,
+    // parentId: (val) => typeof val === 'string' && val.trim().length,
   };
 
   static validate(comment) {
@@ -35,6 +36,7 @@ export class Comment {
     this._createdAt = new Date(options.createdAt);
     this._author = options.author;
     this._text = options.text;
+    // this._parentId = options.parentId;
   }
 
   get id() {
@@ -60,6 +62,10 @@ export class Comment {
   get author() {
     return this._author;
   }
+
+  // get parentId(){
+  //   return this._parentId;
+  // }
 
   get text() {
     return this._text;

@@ -1,54 +1,52 @@
-// eslint-disable-next-line import/no-cycle
 import {
-  getFeed, newFilters, setCurrentUser, showTweet,
+  addTweet,
+  newFilters, setCurrentUser,
 } from '../index.js';
-import { userCollection } from './userCollection/userCollection.js';
+import { userCollection } from './UserCollection/UserCollection.js';
 
 export class TweetsController {
-  constructor() {
+  constructor({ tweetFeed, tweetFeedView, loadMoreSelector }) {
     this.filter = '';
-    this.showMyTweets();
+    this.offset = 0;
+    this.limit = 10;
+    this.tweetFeed = tweetFeed;
+    this.tweetFeedView = tweetFeedView;
+    this.loadMore = document.querySelector(loadMoreSelector);
+
+    // this.editTweetListener();
+    // this.formSubmit();
     newFilters.display();
     this.filterView();
-    // this.editTweetListener();
-    this.pagination();
-    // this.formSubmit();
     this.signIn();
     this.signUp();
-    this.showTweetOn();
-    this.numMinFeeds = 0;
-    this.numMaxFeeds = 10;
+    this.pagination();
     this.backMainPage();
+    this.logOut();
+    this.addPostView();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      this.tweetFeedView.clear();
+      this.showMyTweetsView({});
+    });
   }
 
-  showMyTweets() {
-    const showLoadTweets = () => getFeed(this.numMinFeeds, this.numMaxFeeds);
-    document.addEventListener('DOMContentLoaded', showLoadTweets);
+  showMyTweetsView(filter) {
+    const { count, page } = this.tweetFeed.getPage(this.offset, this.limit, filter);
+    if (page) {
+      this.tweetFeedView.display(page);
+    }
+
+    if (count <= this.offset + this.limit) {
+      this.loadMore.style.display = 'none';
+    }
   }
 
-  addFilterConfig({
-    author, dateFrom, dateTo, text, hashTags,
-  }) {
-    const filterConfig = {};
-    if (author) {
-      filterConfig.author = author;
-    }
-    if (dateFrom) {
-      filterConfig.dateFrom = dateFrom;
-    }
-    if (dateTo) {
-      filterConfig.dateTo = dateTo;
-    }
-    if (text) {
-      filterConfig.text = text;
-    }
-    if (hashTags) {
-      filterConfig.hashTags = hashTags;
-    }
-
+  addFilterConfig(filterConfig) {
+    this.tweetFeedView.clear();
     this.filter = filterConfig;
-    console.log(this.filter);
-    getFeed(0, 10, this.filter);
+    this.offset = 0;
+    this.limit = 10;
+    this.showMyTweetsView(this.filter);
   }
 
   filterView() {
@@ -74,10 +72,10 @@ export class TweetsController {
   }
 
   pagination() {
-    const loadMore = document.querySelector('.posts__button');
-    loadMore.addEventListener('click', () => {
-      console.log(this.filter);
-      getFeed(this.numMinFeeds, this.numMaxFeeds + 10, this.filter);
+    this.loadMore.addEventListener('click', () => {
+      // console.log(this.filter);
+      this.offset += this.limit;
+      this.showMyTweetsView(this.filter);
     });
   }
 
@@ -113,9 +111,11 @@ export class TweetsController {
       const token = localStorage.getItem('token');
       if (token) {
         const user = userCollection.verify(token);
-        setCurrentUser(user.login);
         if (user) {
-          getFeed();
+          // getFeed(this.numMinFeeds, this.numMaxFeeds);
+          this.showMyTweetsView({});
+          setCurrentUser(user.login);
+          // return user;
         }
         if (!user) {
           document.location.href = document.location.pathname;
@@ -154,16 +154,13 @@ export class TweetsController {
     });
   }
 
-  showTweetOn() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const onLoadTweets = document.querySelectorAll('.posts__public');
-      onLoadTweets.forEach((el) => {
-        el.addEventListener('click', function (event) {
-          if (!event.target.classList.contains('svg-edit')) {
-            showTweet(this.id);
-          }
-        });
-      });
+  logOut() {
+    const logOutUser = document.querySelector('.header__user svg');
+    logOutUser.addEventListener('click', () => {
+      userCollection.remove('token');
+      this.tweetFeedView.clear();
+      this.showMyTweetsView({});
+      setCurrentUser('');
     });
   }
 
@@ -173,4 +170,20 @@ export class TweetsController {
       document.location.href = document.location.pathname;
     });
   }
+
+  addPostView(){
+    const textareaAdd = document.querySelector('.posts__textarea textarea');
+    const buttonAdd = document.querySelector('.posts__files_btn');
+    const token = JSON.parse(localStorage.getItem('token'));
+    if(token){
+      buttonAdd.addEventListener('click',()=>{
+        addTweet(textareaAdd.value)
+      })
+    }
+  }
+
+
+
 }
+
+

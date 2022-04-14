@@ -12,17 +12,20 @@ export class Tweet {
   };
 
   constructor(options) {
-    // if (!Tweet.validate(options)) {
-    //   throw new Error('TweetView validate failed');
-    // }
+    if (!Tweet.validate(options)) {
+      throw new Error('TweetView validate failed');
+    }
 
     this._id = options.id;
     this._createdAt = new Date(options.createdAt);
     this._author = options.author;
     this._text = options.text;
     this._comments = [];
-    options.comments.forEach((com) => {
-      this._comments.push(new Comment(com));
+    options.comments.forEach((comment) => {
+      // if (!Comment.validate(comment)) {
+      //   return
+      // }
+      this._comments.push(new Comment(comment));
     });
   }
 

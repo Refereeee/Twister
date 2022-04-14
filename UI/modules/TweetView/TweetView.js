@@ -1,3 +1,5 @@
+import {addComment} from "../../index.js";
+
 export class TweetView {
   constructor(containerId) {
     this.containerId = document.querySelector(containerId);
@@ -45,14 +47,14 @@ export class TweetView {
     this.containerId.insertAdjacentHTML(
       'afterbegin',
       `<div class="twit__wrapper">
-              <div class="posts__public">
+              <div class="posts__public" data-tweet="${tweet.id}">
                   <div class="posts__user_img">
                     <img src="./images/${TweetView.nickname(tweet.author)}.png" alt="picture" class="posts__add_picture">
                   </div>
                   <div class="posts__user">
                       <h3>${tweet.author}</h3>
                       <span class="posts__nickname">@${TweetView.nickname(tweet.author)}</span>
-                        <img src="../../svg/edit.svg" class="svg-edit" alt="edit"> 
+                        <img src="./svg/edit.svg" class="svg-edit" alt="edit"> 
                     <div class="posts__content">
                           <span class="posts_time">${TweetView.postTime(tweet)}</span>
                           <article>${tweet.text}</article>
@@ -85,6 +87,22 @@ export class TweetView {
                 </div>`,
       );
     });
+    commentsHtml.insertAdjacentHTML(
+       'afterbegin',
+       `<div class="comment_add">
+<textarea cols="61" rows="2" class="posts__addText comment_textarea" placeholder="What’s happening?"></textarea>
+             <button class="posts__files_btn  btn comment_time">Reply</button>
+</div>`,)
+
+    const commentAreaAdd = document.querySelector('.comment_textarea');
+    const tweetId = this.containerId.querySelector('.posts__public').getAttribute('data-tweet');
+    const commentButton = document.querySelector('.comment_time');
+    const token = JSON.parse(localStorage.getItem('token'));
+    this.containerId.querySelector('.comment_time').addEventListener('click',()=>{
+      if(token) {
+        addComment(tweetId, commentAreaAdd.value);
+      }
+    })
   }
 
   clear() {

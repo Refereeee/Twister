@@ -16,76 +16,37 @@ export class TweetFeed {
   constructor() {
     this.user = null;
     this.list = [];
-    this.tweetsState = [];
     // this.addAll(tweets);
     this.storageKey = 'list';
     this.restore();
   }
 
-  filterByAuthor(filterConfig) {
-    if (filterConfig?.author) {
-      this.tweetsState = this.tweetsState.filter((el) => el.author === filterConfig.author);
-    }
+  static sorting(a, b) {
+    return a.createdAt - b.createdAt;
   }
 
-  filterByDate(filterConfig) {
-    if (filterConfig?.dateFrom && filterConfig?.dateTo) {
-      this.tweetsState = this.tweetsState.filter((el) => el.createdAt >= new Date(filterConfig.dateFrom)
-         && el.createdAt <= new Date(filterConfig.dateTo));
-    }
-    if (filterConfig?.dateFrom) {
-      this.tweetsState = this.tweetsState.filter((el) => el.createdAt > new Date(filterConfig.dateFrom));
-    }
-    if (filterConfig?.dateTo) {
-      this.tweetsState = this.tweetsState.filter((el) => el.createdAt < new Date(filterConfig.dateTo));
-    }
-  }
+  filterStructure = {
+    author: (val, list) => (val ? list.filter(({ author }) => author === val) : list),
+    text: (val, list) => (val ? list.filter(({ text }) => text.toLowerCase().includes(val.toLowerCase())) : list),
+    hashTags: (val, list) => (val ? list.filter(({ text }) => text.split(' ').includes(val)) : list),
+    dateTo: (val, list) => (val ? list.filter(({ createdAt }) => createdAt <= new Date(val)) : list),
+    dateFrom: (val, list) => (val ? list.filter(({ createdAt }) => createdAt >= new Date(val)) : list),
+  };
 
-  filterByText(filterConfig) {
-    if (filterConfig?.text) {
-      this.tweetsState = this.tweetsState.filter((el) => {
-        if (el.text.toLowerCase().includes(filterConfig.text.toLowerCase())) {
-          return el;
-        }
-      });
+  filter(filterConfig, list) {
+    for (const [key, value] of Object.entries(filterConfig)) {
+      list = this.filterStructure[key](value, list);
     }
-  }
-
-  filterByHashtag(filterConfig) {
-    if (filterConfig?.hashTags) {
-      this.tweetsState = this.tweetsState.filter((el) => {
-        const arrText = el.text.split(' ');
-        // const diff = (a1, a2) => a1.filter(i => a2.includes(i));
-        // if (diff(arrText, filterConfig?.hashTags).length === filterConfig?.hashTags.length) {
-        //   return el;
-        // }
-        if (arrText.includes(filterConfig.hashTags)) {
-          return el;
-        }
-      });
-    }
-  }
-
-  sorting(skip = 0, top = 10) {
-    return this.tweetsState.sort((a, b) => a.createdAt - b.createdAt).slice(skip, skip + top);
+    return list;
   }
 
   getPage(skip = 0, top = 10, filterConfig = {}) {
-    this.tweetsState = [...this.list];
-    if (Object.keys(filterConfig).length === 0) {
-      this.tweetsState = this.sorting(skip, top);
-      return this.tweetsState;
-    }
-    this.filterByAuthor(filterConfig);
-    this.filterByDate(filterConfig);
-    this.filterByText(filterConfig);
-    this.filterByHashtag(filterConfig);
-    this.tweetsState = this.sorting(skip, top);
-    return this.tweetsState;
-  }
+    const filtered = this.filter(filterConfig, [...this.list]);
 
-  getState() {
-    return this.tweetsState;
+    return {
+      count: filtered.length,
+      page: filtered.sort(TweetFeed.sorting).slice(skip, skip + top),
+    };
   }
 
   get(id) {
@@ -108,7 +69,7 @@ export class TweetFeed {
     // this.list = [];
     const newTweet = new Tweet(options);
     this.list.push(newTweet);
-
+    this.save();
     return true;
   }
 
@@ -117,10 +78,15 @@ export class TweetFeed {
   }
 
   editTweet(id, text) {
+
     const editObj = this.get(id);
 
     if (TweetFeed.validateUser(this.user) && TweetFeed.validateText(text)) {
+      console.log(id)
+      // console.log(text);
+      // console.log(editObj);
       editObj.text = text;
+      this.save();
       return true;
     }
 
@@ -132,6 +98,7 @@ export class TweetFeed {
 
     if (TweetFeed.validateUser(this.user)) {
       this.list.splice(numInArr, 1);
+      this.save();
       return true;
     }
 
@@ -139,7 +106,7 @@ export class TweetFeed {
   }
 
   addComment(id, text) {
-    const comArr = this.get(id).comments;
+    this.get(id).comments;
     const date = new Date();
 
     const options = {
@@ -154,36 +121,21 @@ export class TweetFeed {
     }
 
     const newComment = new Comment(options);
-    comArr.push(newComment);
+    this.get(id).comments.push(newComment);
+    this.save();
     return true;
   }
 
   setCurrentUser(user) {
-    if (!TweetFeed.validateUser(user)) {
-      throw new Error('Validate user error');
-    }
+    // if (!TweetFeed.validateUser(user)) {
+    //   throw new Error('Validate user error');
+    // }
 
     this.user = user;
   }
 
-  addAll(tws) {
-    const garbage = [];
-
-    if (!Array.isArray(tws)) {
-      throw new Error('Error of tweets is not array');
-    }
-
-    for (const tw of tws) {
-      if (typeof tw !== 'object' || !Tweet.validate(tw)) {
-        garbage.push(tw);
-      } else {
-        this.list.push(tw);
-      }
-    }
-    return garbage;
-  }
-
   getList() {
+    console.log(this.list.length);
     return this.list;
   }
 
@@ -192,6 +144,7 @@ export class TweetFeed {
 
     try {
       this.listProcess(JSON.parse(data));
+      this.save();
     } catch (e) {
       this.listProcess(fetchList());
       this.save();

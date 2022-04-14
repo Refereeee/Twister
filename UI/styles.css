@@ -22,9 +22,9 @@ body {
     height: 100%;
 }
 
-body::-webkit-scrollbar {
-    width: 0;
-}
+/*body::-webkit-scrollbar {*/
+/*    width: 0;*/
+/*}*/
 
 h1 {
     font-family: Bebas Neue;
@@ -343,6 +343,44 @@ main {
     top: 3.2rem;
     cursor: pointer;
 }
+
+.edit{
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 0.8rem 0.8rem;
+    font-size: 1.4rem;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.svg-edit:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.svg-edit:hover .edit {
+    /*background-color: #3e8e41;*/
+}
+
 
 .posts__content article {
     font-family: Nunito Sans;
@@ -903,4 +941,19 @@ footer {
     color: var(--white);
     padding: 1rem;
     border-radius: 0.7rem;
+}
+
+.comment_add{
+    position: fixed;
+    bottom: 7rem;
+    left: 60rem;
+    z-index: 1000;
+}
+
+.comment__textarea{
+    z-index: 1000;
+}
+
+.comment_time{
+    margin-left: 42rem;
 }

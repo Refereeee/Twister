@@ -1,4 +1,4 @@
-import { TweetFeed } from '../TweetFeed/TweetFeed.js';
+// import { TweetFeed } from '../TweetFeed/TweetFeed.js';
 import { Header } from './Header.js';
 
 export class HeaderView {
@@ -10,9 +10,10 @@ export class HeaderView {
     const userOn = this.containerId.querySelector('.header__user');
     const userOff = this.containerId.querySelector('.header__buttons');
 
-    if (userName === null) {
+    if (!userName) {
       userOn.classList.add('hidden');
       userOff.classList.remove('hidden');
+      console.log(userName);
     }
 
     if (Header.validateUser(userName)) {

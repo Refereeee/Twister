@@ -15,6 +15,9 @@ module.exports = {
     'import/extensions': 'off',
     'no-restricted-syntax': 'off',
     'no-underscore-dangle': 'off',
+    'no-new': 'off',
+    'no-param-reassign': 'off',
+    'no-return-assign': 'off',
     'eslint-disable-next-line class-methods-use-this': 'off',
   },
 };
