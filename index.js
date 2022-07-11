@@ -38,6 +38,7 @@ const newTweetsController = new TweetsController({
   tweetFeed,
   tweetFeedView,
   loadMoreSelector: '.posts__button',
+  addPostView: '.posts__add',
 });
 
 export const setCurrentUser = (name) => {
@@ -72,11 +73,10 @@ export const showTweet = (id) => {
   }
 };
 
-export const addComment = (id,text) =>{
-  tweetFeed.addComment(id,text);
-  newTweetView.display(tweetFeed.showTweet(id))
-}
-
+export const addComment = (id, text) => {
+  tweetFeed.addComment(id, text);
+  newTweetView.display(tweetFeed.showTweet(id));
+};
 
 // const searchParams = new URLSearchParams(document.location.search);
 
@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (token) {
     const user = userCollection.verify(token);
     if (user) {
-      // newTweetsController.showMyTweetsView({});
       setCurrentUser(user.login);
+      newTweetsController.showAddPost(user.login);
     }
   }
 });

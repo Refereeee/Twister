@@ -1,4 +1,4 @@
-import {addComment} from "../../index.js";
+import { addComment } from '../../index.js';
 
 export class TweetView {
   constructor(containerId) {
@@ -87,22 +87,25 @@ export class TweetView {
                 </div>`,
       );
     });
-    commentsHtml.insertAdjacentHTML(
-       'afterbegin',
-       `<div class="comment_add">
+    const token = JSON.parse(localStorage.getItem('token'));
+    if (token) {
+      commentsHtml.insertAdjacentHTML(
+        'afterbegin',
+        `<div class="comment_add">
 <textarea cols="61" rows="2" class="posts__addText comment_textarea" placeholder="What’s happening?"></textarea>
              <button class="posts__files_btn  btn comment_time">Reply</button>
-</div>`,)
+</div>`,
+      );
+    }
 
     const commentAreaAdd = document.querySelector('.comment_textarea');
     const tweetId = this.containerId.querySelector('.posts__public').getAttribute('data-tweet');
     const commentButton = document.querySelector('.comment_time');
-    const token = JSON.parse(localStorage.getItem('token'));
-    this.containerId.querySelector('.comment_time').addEventListener('click',()=>{
-      if(token) {
+    this.containerId.querySelector('.comment_time').addEventListener('click', () => {
+      if (token) {
         addComment(tweetId, commentAreaAdd.value);
       }
-    })
+    });
   }
 
   clear() {

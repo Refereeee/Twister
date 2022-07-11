@@ -115,6 +115,7 @@ export class TweetsController {
           // getFeed(this.numMinFeeds, this.numMaxFeeds);
           this.showMyTweetsView({});
           setCurrentUser(user.login);
+          this.showAddPost(user.login);
           // return user;
         }
         if (!user) {
@@ -158,6 +159,7 @@ export class TweetsController {
     const logOutUser = document.querySelector('.header__user svg');
     logOutUser.addEventListener('click', () => {
       userCollection.remove('token');
+      this.removeAddPost();
       this.tweetFeedView.clear();
       this.showMyTweetsView({});
       setCurrentUser('');
@@ -171,19 +173,35 @@ export class TweetsController {
     });
   }
 
-  addPostView(){
+  addPostView() {
     const textareaAdd = document.querySelector('.posts__textarea textarea');
     const buttonAdd = document.querySelector('.posts__files_btn');
     const token = JSON.parse(localStorage.getItem('token'));
-    if(token){
-      buttonAdd.addEventListener('click',()=>{
-        addTweet(textareaAdd.value)
-      })
+    if (token) {
+      buttonAdd.addEventListener('click', () => {
+        addTweet(textareaAdd.value);
+      });
     }
   }
 
+  static nickname(name) {
+    return name.split(' ').slice(1);
+  }
 
+  showAddPost(login) {
+    const addPostElem = document.querySelector('.posts__add');
+    if (addPostElem.classList.contains('hidden')) {
+      addPostElem.classList.add('block');
+      addPostElem.classList.remove('hidden');
+      addPostElem.querySelector('img').src = `./images/${`${TweetsController.nickname(login)}.png`}`;
+    }
+  }
 
+  removeAddPost() {
+    const addPostElem = document.querySelector('.posts__add');
+    if (addPostElem.classList.contains('block')) {
+      addPostElem.classList.add('hidden');
+      addPostElem.classList.remove('block');
+    }
+  }
 }
-
-
