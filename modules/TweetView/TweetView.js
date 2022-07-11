@@ -100,7 +100,7 @@ export class TweetView {
 
     const commentAreaAdd = document.querySelector('.comment_textarea');
     const tweetId = this.containerId.querySelector('.posts__public').getAttribute('data-tweet');
-    const commentButton = document.querySelector('.comment_time');
+    // const commentButton = document.querySelector('.comment_time');
     this.containerId.querySelector('.comment_time').addEventListener('click', () => {
       if (token) {
         addComment(tweetId, commentAreaAdd.value);
